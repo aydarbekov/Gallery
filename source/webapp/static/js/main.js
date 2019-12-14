@@ -52,7 +52,18 @@ function deleteTasksLoadIndex(comment_id) {
         error: jqueryAjaxError
     })
 }
-
+function like(number) {
+    $.ajax({
+        url: 'http://localhost:8000/api/v1/photos/',
+        method: 'PATCH',
+        contentType: 'application/json',
+        headers: {'X-CSRFToken': csrftoken},
+        data: JSON.stringify({likes: `{{likes}}`+number}),
+        dataType: 'json',
+        success: jqueryParseData,
+        error: jqueryAjaxError
+    })
+}
 $(document).ready(function () {
     // createTasksLoadIndex();
     // deleteTasksLoadIndex();

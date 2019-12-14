@@ -17,7 +17,7 @@
         <div>Created at: {{ photo.creation_date }}</div>
         <div>Likes: {{ photo.likes }}</div>
         <div>Author: {{ photo.author_name }}</div>
-       <button id="Like">Like</button>
+       <button id="{{photo.id}}" onclick="like(1)">Like</button>
         <hr/>
         <hr/>
 
