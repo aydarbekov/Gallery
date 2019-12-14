@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Task_view{% endblock %}
+{% block menu %}
+{#    {% if request.user.is_authenticated %}#}
+{#        <li><a href="{% url 'webapp:task_update' task.pk %}">Edit</a></li>#}
+{#        <li><a href="{% url 'webapp:task_delete' task.pk %}">Delete</a></li>#}
+{#    {% endif %}#}
+{#    {% if request.user.is_authenticated and request.user.team_user.project == task.project.pk%}#}
+{#        <li><a href="{% url 'webapp:task_update' task.pk %}">Edit</a></li>#}
+{#        <li><a href="{% url 'webapp:task_delete' task.pk %}">Delete</a></li>#}
+{#    {% endif %}#}
+{% endblock %}
+{% block content %}
+   <div class="container">
+       <img class="photo" src="{{ photo.image.url }}" width="250" height="250" alt="user picture">
+        <div>Description: {{ photo.description }}</div>
+        <div>Created at: {{ photo.creation_date }}</div>
+        <div>Likes: {{ photo.likes }}</div>
+        <div>Author: {{ photo.author_name }}</div>
+
+   </div>
+{% endblock %}

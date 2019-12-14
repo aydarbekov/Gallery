@@ -121,8 +121,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_URL = '/static/'
-
 HOST_NAME = 'localhost:8000'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
