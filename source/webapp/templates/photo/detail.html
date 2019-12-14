@@ -33,9 +33,38 @@
         {% empty %}
             <p>No comments yet.</p>
         {% endfor %}
-{#        <form action="{% url 'webapp:comment_create' photo.pk %}" method="POST" id="add_comment">#}
-{#            {% include 'partial/task_form.html' %}#}
-{#            <input type="submit" value="Создать" class="btn btn-primary">#}
-{#        </form>#}
+
     </div>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Создать комментарий
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Создание комментария</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="text">Текст</label>
+                    <textarea class="form-control" id="text" rows="3"></textarea>
+                  </div>
+                </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="create" type="button" class="btn btn-primary" onclick="createTasksLoadIndex($('#text').val(), `{{ user }}`, `{{ photo.id }}`)" >Сохранить</button>
+      </div>
+{#        `{{ user }}`#}
+{#        $('#text').val()#}
+
+    </div>
+  </div>
+</div>
 {% endblock %}

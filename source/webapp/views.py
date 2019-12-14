@@ -31,10 +31,11 @@ class PhotoView(DetailView):
         # context['form'] = TaskForm()
         comments = context['photo'].comments.order_by('-created_at')
         self.paginate_comments_to_context(comments, context)
+        context['user'] = self.request.user
         return context
 
     def paginate_comments_to_context(self, comments, context):
-        paginator = Paginator(comments, 3, 0)
+        paginator = Paginator(comments, 10, 0)
         page_number = self.request.GET.get('page', 1)
         page = paginator.get_page(page_number)
         context['paginator'] = paginator
