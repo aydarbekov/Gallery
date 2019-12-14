@@ -17,6 +17,7 @@
         <div>Created at: {{ photo.creation_date }}</div>
         <div>Likes: {{ photo.likes }}</div>
         <div>Author: {{ photo.author_name }}</div>
+       <button id="Like">Like</button>
         <hr/>
         <hr/>
 
@@ -27,15 +28,14 @@
             <div class="comment">
                 <p>{{ comment.author }} commented at {{ comment.created_at|date:'d.m.Y H:i:s' }}</p>
                 <div class="pre">{{ comment.text }}</div>
-                {% if article.is_active %}
-                    <p class="comment-links">
-                        <a href="{% url 'webapp:comment_update' comment.pk %}">Edit</a>
-                        <a href="{% url 'webapp:comment_delete' comment.pk %}">Delete</a>
-                    </p>
-                {% endif %}
+            <button id="{{ comment.id }}" onclick="deleteTasksLoadIndex(this.id)" >Delete</button>
             </div>
         {% empty %}
             <p>No comments yet.</p>
         {% endfor %}
+{#        <form action="{% url 'webapp:comment_create' photo.pk %}" method="POST" id="add_comment">#}
+{#            {% include 'partial/task_form.html' %}#}
+{#            <input type="submit" value="Создать" class="btn btn-primary">#}
+{#        </form>#}
     </div>
 {% endblock %}

@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.forms import widgets
 
-from webapp.models import Photo
+from webapp.models import Photo, Comment
 
 
 class PhotoForm(forms.ModelForm):
@@ -10,3 +10,8 @@ class PhotoForm(forms.ModelForm):
         model = Photo
         fields = ['image', 'description', 'author_name','likes']
 
+
+class PhotoCommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['text']

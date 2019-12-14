@@ -21,7 +21,7 @@ class Comment(models.Model):
     text = models.TextField(null=False, blank=False, max_length=400, verbose_name='Текст')
     Photo = models.ForeignKey('webapp.Photo', null=False, blank=False,
                                 on_delete=models.CASCADE, verbose_name='Фотография', related_name='comments')
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='comments', on_delete=models.CASCADE)
+    author = models.CharField(null=False, blank=False, max_length=50, verbose_name='Автор')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
 
     def __str__(self):
@@ -33,7 +33,7 @@ class Like(models.Model):
                              related_name='likes',
                              on_delete=models.CASCADE)
     photo = models.ForeignKey('Photo', verbose_name='Фото', on_delete=models.CASCADE, related_name='likes_status')
-    like = models.BooleanField(default=False, verbose_name='Статус лайка')
+    like = models.IntegerField(default=1, verbose_name='лайк')
 
     def __str__(self):
         return self.like

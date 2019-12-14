@@ -32,7 +32,7 @@ urlpatterns = [
     # path('massdeletestatus/', StatusDelete.as_view(), name='mass_delete_status'),
     # path('projects/', ProjectsListView.as_view(), name='projects_view'),
     # path('project/<int:pk>/', ProjectView.as_view(), name='project_view'),
-    # path('project/<int:pk>/add-task/', TaskForProjectCreateView.as_view(), name='project_task_create'),
+
     # path('project/add/', ProjectCreateView.as_view(), name='project_create'),
     # path('project/<int:pk>/edit/', ProjectUpdateView.as_view(), name='project_update'),
     # path('project/<int:pk>/delete/', ProjectDeleteView.as_view(), name='project_delete'),

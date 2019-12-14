@@ -39,8 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'webapp',
     'widget_tweaks',
+    'api_v1',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +133,13 @@ MEDIA_URL = '/uploads/'
 LOGIN_URL = reverse_lazy('webapp:login')
 LOGIN_REDIRECT_URL = "webapp:index"
 LOGOUT_REDIRECT_URL = "webapp:index"
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
+}
