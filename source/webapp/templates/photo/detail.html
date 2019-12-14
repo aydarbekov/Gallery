@@ -12,11 +12,30 @@
 {% endblock %}
 {% block content %}
    <div class="container">
-       <img class="photo" src="{{ photo.image.url }}" width="250" height="250" alt="user picture">
+       <img class="photo" src="{{ photo.image.url }}" width="500" height="500" alt="user picture">
         <div>Description: {{ photo.description }}</div>
         <div>Created at: {{ photo.creation_date }}</div>
         <div>Likes: {{ photo.likes }}</div>
         <div>Author: {{ photo.author_name }}</div>
+        <hr/>
+        <hr/>
 
    </div>
+    <div class="comment-list">
+        <h2>Comments</h2>
+        {% for comment in comments %}
+            <div class="comment">
+                <p>{{ comment.author }} commented at {{ comment.created_at|date:'d.m.Y H:i:s' }}</p>
+                <div class="pre">{{ comment.text }}</div>
+                {% if article.is_active %}
+                    <p class="comment-links">
+                        <a href="{% url 'webapp:comment_update' comment.pk %}">Edit</a>
+                        <a href="{% url 'webapp:comment_delete' comment.pk %}">Delete</a>
+                    </p>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>No comments yet.</p>
+        {% endfor %}
+    </div>
 {% endblock %}

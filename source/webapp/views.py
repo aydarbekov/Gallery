@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.core.paginator import Paginator
+from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -22,12 +23,32 @@ class PhotoView(DetailView):
     pk_url_kwarg = 'pk'
     model = Photo
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # context['form'] = TaskForm()
+        comments = context['photo'].comments.order_by('-created_at')
+        self.paginate_comments_to_context(comments, context)
+        return context
+
+    def paginate_comments_to_context(self, comments, context):
+        paginator = Paginator(comments, 3, 0)
+        page_number = self.request.GET.get('page', 1)
+        page = paginator.get_page(page_number)
+        context['paginator'] = paginator
+        context['page_obj'] = page
+        context['comments'] = page.object_list
+        context['is_paginated'] = page.has_other_pages()
+
 
 class PhotoCreateView(StatsMixin, CreateView):
     template_name = 'photo/create.html'
     model = Photo
     # form_class = PhotoForm
-    fields = ['image', 'description', 'author_name', 'likes']
+    fields = ['image', 'description']
+
+    def form_valid(self, form):
+        form.instance.author_name = self.request.user
+        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse('webapp:index')
