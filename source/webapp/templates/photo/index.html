@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block menu %}
-{#    <li><a href="{% url 'webapp:task_create' %}">Add Task</a></li>#}
+    <li><a href="{% url 'webapp:photo_create' %}">Add photo</a></li>
 {#    <li><a href="{% url 'webapp:types_view' %}">Types</a></li>#}
 {#    <li><a href="{% url 'webapp:status_view' %}">Statuses</a></li>#}
 {#    <li><a href="{% url 'webapp:projects_view' %}">Projects</a></li>#}
@@ -21,10 +21,7 @@
 
         {% for photo in photos %}
             <img class="photo" src="{{ photo.image.url }}" width="250" height="250" alt="user picture">
-{#            <div>Description: {{ photo.description }}</div>#}
-{#            <div>Created at: {{ photo.creation_date }}</div>#}
             <div>Likes: {{ photo.likes }}</div>
-{#            <div>Author: {{ photo.author_name }}</div>#}
 
             <a href="{% url 'webapp:photo_view' photo.pk %}">More...</a>
 {#            {% if request.user.is_authenticated %}#}

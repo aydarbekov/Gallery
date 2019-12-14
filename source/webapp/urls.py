@@ -7,14 +7,14 @@ from django.urls import path
 # from webapp.views.status_views import StatusDelete
 # from webapp.views.task_views import TasksDelete, TaskForProjectCreateView
 # from webapp.views.type_views import TypeDelete
-from webapp.views import IndexView, PhotoView
+from webapp.views import IndexView, PhotoView, PhotoCreateView, PhotoUpdateView, PhotoDeleteView
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('photo/<int:pk>/', PhotoView.as_view(), name='photo_view'),
-    # # path('task/add/', TaskCreateView.as_view(), name='task_create'),
-    # path('task/<int:pk>/edit/', TaskUpdateView.as_view(), name='task_update'),
-    # path('task/<int:pk>/delete/', TaskDeleteView.as_view(), name='task_delete'),
+    path('photo/add/', PhotoCreateView.as_view(), name='photo_create'),
+    path('photo/<int:pk>/edit/', PhotoUpdateView.as_view(), name='photo_update'),
+    path('photo/<int:pk>/delete/', PhotoDeleteView.as_view(), name='photo_delete'),
     # path('massdelete/', TasksDelete.as_view(), name='mass_delete'),
     # path('types/', TypeView.as_view(), name='types_view'),
     # path('types/add/', TypeCreateView.as_view(), name='type_create'),
