@@ -1,4 +1,4 @@
-Django==2.2
+Django==2.2.21
 django-mixins==0.0.10
 django-widget-tweaks==1.4.5
 djangorestframework==3.11.0
